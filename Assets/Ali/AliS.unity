@@ -833,6 +833,7 @@ GameObject:
   - component: {fileID: 1165124947}
   - component: {fileID: 1165124940}
   - component: {fileID: 1165124948}
+  - component: {fileID: 1165124949}
   - component: {fileID: 1165124946}
   m_Layer: 0
   m_Name: Player
@@ -1046,6 +1047,29 @@ MonoBehaviour:
   gravity: -30
   jumpHeight: 15
   rotationSpeed: 10
+--- !u!114 &1165124949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165124939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821355f4644d50c49bab675d6c6ca1de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shifting
+  currentCharge: 0
+  maxCharge: 3
+  perfectShiftBegin: 2
+  perfectShiftEnd: 2.5
+  canCharge: 0
+  isperfectShift: 0
+  isCharging: 0
+  shiftSpeed: 15
+  shiftCoolDown: 10
+  Movement2: {fileID: 0}
+  characterController: {fileID: 0}
 --- !u!1 &1223196920
 GameObject:
   m_ObjectHideFlags: 0

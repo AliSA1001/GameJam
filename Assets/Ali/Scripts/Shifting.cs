@@ -8,10 +8,13 @@ public class Shifting : MonoBehaviour
     [SerializeField] private float maxCharge;
     [SerializeField] private float perfectShiftBegin;
     [SerializeField] private float perfectShiftEnd;
+    [SerializeField] private bool canCharge;
     [SerializeField] private bool isCharging = false;
+    [SerializeField] private float currentShiftCoolDown = 0;
 
     [Header("Shift Numbers")]
     [SerializeField] private float shiftSpeed;
+    [SerializeField] private float shiftCoolDown;
 
     [Header("Conection")]
     [SerializeField] private Movement2 Movement2; // we can conect it in start but we will do the inspector thing
@@ -25,23 +28,60 @@ public class Shifting : MonoBehaviour
 
     void Update()
     {
+        if (shiftCoolDown <= 0 )
+        {
+            canCharge = true;
+        }
+
+
         if (isCharging)
         {
             Movement2.SwitchMoveState(false);
-            currentCharge -= Time.deltaTime;
-            if(currentCharge < 0)
-            {
+            currentCharge += Time.deltaTime;
+            
+        }
 
+        if(!canCharge)
+        {
+            currentShiftCoolDown -= Time.deltaTime;
+            if(currentShiftCoolDown <= 0)
+            {
+                canCharge = true;
+                currentShiftCoolDown = shiftCoolDown;
             }
         }
     }
 
-
+    private void ShiftingNow(bool isPerfectShift)
+    {
+        Vector3 diraction = gameObject.transform.forward;
+        characterController.Move(diraction * shiftSpeed * Time.deltaTime);
+        Movement2.SwitchMoveState(true);
+        currentCharge = 0;
+        canCharge = isPerfectShift;
+    }
 
     public void OnShift(InputAction.CallbackContext context)
     {
-        isCharging = context.ReadValueAsButton();// it will be true if he is Charging
-        isCharging = true;
+        if (canCharge && context.performed)
+        {
+            isCharging = true;
+            
+        }
+        if(context.canceled && isCharging)
+        {
+            isCharging= false;
+            if (currentCharge <= perfectShiftEnd && currentCharge >= perfectShiftBegin)
+            {
+                ShiftingNow(true);
+            }
+
+            else
+            {
+                ShiftingNow(false);
+            }
+                  
+        }
     }
 
 }
