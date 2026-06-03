@@ -5,15 +5,15 @@ public class Shifting : MonoBehaviour
 {
     [SerializeField] private float currentCharge;
     [SerializeField] private float maxCharge;
+    [SerializeField] private float perfectShiftBegin;
+    [SerializeField] private float perfectShiftEnd;
     [SerializeField] private bool isCharging = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -22,6 +22,7 @@ public class Shifting : MonoBehaviour
     public void OnShift(InputAction.CallbackContext context)
     {
         isCharging = context.ReadValueAsButton();// it will be true if he is Charging
+        isCharging = true;
     }
 
 }
