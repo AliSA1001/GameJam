@@ -1000,6 +1000,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d1935970-c88a-4a38-a829-b9d162fd4c4c
     m_ActionName: 'Player/Shot[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1165124949}
+        m_TargetAssemblyTypeName: Shifting, Assembly-CSharp
+        m_MethodName: OnShift
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c6563687-0a11-400e-8941-e2a5ce04ae43
+    m_ActionName: 'Player/Shift[/Keyboard/leftShift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1042,7 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6d763c8bd1c6a439fcb59c5e9114f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement2
-  canMove: 0
+  canMove: 1
   speed: 15
   gravity: -30
   jumpHeight: 15
@@ -1064,8 +1080,12 @@ MonoBehaviour:
   perfectShiftBegin: 2
   perfectShiftEnd: 2.5
   canCharge: 0
-  isperfectShift: 0
   isCharging: 0
+  isShifting: 0
+  currentShiftingTime: 0
+  shiftingTime: 5
+  shiftingSpeed: 1
+  currentShiftCoolDown: 0
   shiftSpeed: 15
   shiftCoolDown: 10
   Movement2: {fileID: 0}

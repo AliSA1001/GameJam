@@ -10,6 +10,9 @@ public class Shifting : MonoBehaviour
     [SerializeField] private float perfectShiftEnd;
     [SerializeField] private bool canCharge;
     [SerializeField] private bool isCharging = false;
+    [SerializeField] private bool isShifting;
+    [SerializeField] private float currentShiftingTime;
+    [SerializeField] private float shiftingTime;
     [SerializeField] private float currentShiftCoolDown = 0;
 
     [Header("Shift Numbers")]
@@ -28,6 +31,19 @@ public class Shifting : MonoBehaviour
 
     void Update()
     {
+
+        if(isShifting)
+        {
+            Vector3 diraction = gameObject.transform.forward;
+            characterController.Move(diraction * shiftSpeed * Time.deltaTime);
+            currentShiftingTime -= Time.deltaTime;
+            if(currentShiftingTime < 0)
+            {
+                isShifting = false;
+                
+
+            }
+        }
         if (shiftCoolDown <= 0 )
         {
             canCharge = true;
@@ -38,7 +54,7 @@ public class Shifting : MonoBehaviour
         {
             Movement2.SwitchMoveState(false);
             currentCharge += Time.deltaTime;
-            
+          
         }
 
         if(!canCharge)
@@ -50,12 +66,13 @@ public class Shifting : MonoBehaviour
                 currentShiftCoolDown = shiftCoolDown;
             }
         }
+
     }
 
     private void ShiftingNow(bool isPerfectShift)
     {
-        Vector3 diraction = gameObject.transform.forward;
-        characterController.Move(diraction * shiftSpeed * Time.deltaTime);
+        currentShiftingTime = shiftingTime;
+        isShifting = true;
         Movement2.SwitchMoveState(true);
         currentCharge = 0;
         canCharge = isPerfectShift;
