@@ -3,25 +3,51 @@ using UnityEngine.AI;
 
 public class EnemySpawning : MonoBehaviour
 {
-    public GameObject agentPrefab;
+    public GameObject spawnAgentBasicEnemy;
+    public GameObject spawnAgentBigEnemy;
+    public GameObject spawnAgentTinyEnemy;
     public float spawnRadius = 20f;
 
     void Start()
     {
-        StartCoroutine(SpawnLoop());
+        StartCoroutine(SpawnLoopBasicEnemy());
+        StartCoroutine(SpawnLoopBigEnemy());
+        StartCoroutine(SpawnLoopTinyEnemy());
     }
 
-    System.Collections.IEnumerator SpawnLoop()
+    System.Collections.IEnumerator SpawnLoopBasicEnemy()
     {
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(3f, 5f));
-            EnemySpawn();
+            EnemySpawn(spawnAgentBasicEnemy);
+        }
+    }
+
+    System.Collections.IEnumerator SpawnLoopBigEnemy()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(60f, 65f));
+            EnemySpawn(spawnAgentBigEnemy);
+        }
+    }
+
+    System.Collections.IEnumerator SpawnLoopTinyEnemy()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(15f, 30f));
+            EnemySpawn(spawnAgentTinyEnemy);
+            EnemySpawn(spawnAgentTinyEnemy);
+            EnemySpawn(spawnAgentTinyEnemy);
+            EnemySpawn(spawnAgentTinyEnemy);
+            EnemySpawn(spawnAgentTinyEnemy);
         }
     }
 
 
-    void EnemySpawn()
+    void EnemySpawn(GameObject enemy)
     {
         Camera cam = Camera.main;
 
@@ -35,7 +61,7 @@ public class EnemySpawning : MonoBehaviour
 
             if (!isVisible && NavMesh.SamplePosition(randomPos, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                Instantiate(agentPrefab, hit.position, Quaternion.identity);
+                Instantiate(enemy, hit.position, Quaternion.identity);
                 return;
             }
         }
