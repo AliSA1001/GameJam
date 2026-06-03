@@ -474,11 +474,10 @@ GameObject:
   - component: {fileID: 1165124943}
   - component: {fileID: 1165124942}
   - component: {fileID: 1165124941}
-  - component: {fileID: 1165124940}
-  - component: {fileID: 1165124945}
-  - component: {fileID: 1165124946}
-  - component: {fileID: 1165124948}
   - component: {fileID: 1165124947}
+  - component: {fileID: 1165124940}
+  - component: {fileID: 1165124948}
+  - component: {fileID: 1165124946}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -582,27 +581,6 @@ Transform:
   - {fileID: 192523404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1165124945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165124939}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2262ed5779f6154fba9bd48bb5c3217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Movement
-  speed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  jumpForce: 10
-  GroundDistanceCheck: 0.5
-  OntheGround: 0
-  groundcheckPoint: {fileID: 192523404}
-  canDoubleJump: 0
 --- !u!114 &1165124946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,8 +624,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1165124945}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+      - m_Target: {fileID: 1165124948}
+        m_TargetAssemblyTypeName: Movement2, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -704,6 +682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Movement2
   speed: 15
   gravity: -30
+  jumpHeight: 15
 --- !u!1 &1413238051
 GameObject:
   m_ObjectHideFlags: 0
