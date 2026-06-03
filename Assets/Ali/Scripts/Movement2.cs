@@ -8,6 +8,7 @@ public class Movement2 : MonoBehaviour
     private CharacterController characterController;
 
     [Header("moveSetings")]
+    [SerializeField] private bool canMove = true;
     [SerializeField] private float speed;
     [SerializeField] private float gravity;
     [SerializeField] private float jumpHeight;
@@ -25,6 +26,7 @@ public class Movement2 : MonoBehaviour
 
     private void Update()
     {
+        
         if(characterController.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -33,17 +35,19 @@ public class Movement2 : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            // Calculate where we need to look
             Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-            // Smoothly rotate towards that target
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-        characterController.Move(direction * Time.deltaTime * speed);
+        if (canMove)
+        {
+            characterController.Move(direction * Time.deltaTime * speed);
 
-        velocity.y += gravity * Time.deltaTime;
+            velocity.y += gravity * Time.deltaTime;
 
-        characterController.Move(velocity * Time.deltaTime);
+            characterController.Move(velocity * Time.deltaTime);
+        }
+        
     }
 
     public void OnMove(InputAction.CallbackContext context)

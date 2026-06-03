@@ -210,6 +210,8 @@ public class GunsAli : MonoBehaviour
             attackTrigger = false;
         }
     }
+
+  
     public void OnReload(InputAction.CallbackContext context)
     {
         if (context.started && gunAmmo < maxAmmo)
