@@ -49,16 +49,9 @@ public class Movement2 : MonoBehaviour
         }
         
     }
-    public void SwitchMoveState()
+    public void SwitchMoveState(bool newstate)
     {
-        if (canMove)
-        {
-            canMove = false;
-        }
-        else
-        {
-
-        }
+       canMove = newstate;
     }
 
     public void OnMove(InputAction.CallbackContext context)
