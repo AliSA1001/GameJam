@@ -11,6 +11,7 @@ public class Movement2 : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float gravity;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float rotationSpeed;
 
 
     private float vertcalMovement;
@@ -28,9 +29,17 @@ public class Movement2 : MonoBehaviour
         {
             velocity.y = -2f;
         }
+        Vector3 direction = new Vector3(horizcalMovement, 0f, vertcalMovement).normalized;
 
-        Vector3 move = new Vector3(horizcalMovement, 0, vertcalMovement);
-        characterController.Move(move * Time.deltaTime * speed);
+        if (direction.magnitude >= 0.1f)
+        {
+            // Calculate where we need to look
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            // Smoothly rotate towards that target
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        characterController.Move(direction * Time.deltaTime * speed);
 
         velocity.y += gravity * Time.deltaTime;
 
