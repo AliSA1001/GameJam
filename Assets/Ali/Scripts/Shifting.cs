@@ -40,7 +40,8 @@ public class Shifting : MonoBehaviour
             if(currentShiftingTime < 0)
             {
                 isShifting = false;
-                
+                Movement2.SwitchMoveState(true);
+
 
             }
         }
@@ -73,7 +74,6 @@ public class Shifting : MonoBehaviour
     {
         currentShiftingTime = shiftingTime;
         isShifting = true;
-        Movement2.SwitchMoveState(true);
         currentCharge = 0;
         canCharge = isPerfectShift;
     }

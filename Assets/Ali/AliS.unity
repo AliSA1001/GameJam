@@ -1083,10 +1083,9 @@ MonoBehaviour:
   isCharging: 0
   isShifting: 0
   currentShiftingTime: 0
-  shiftingTime: 5
-  shiftingSpeed: 1
+  shiftingTime: 0.25
   currentShiftCoolDown: 0
-  shiftSpeed: 15
+  shiftSpeed: 30
   shiftCoolDown: 10
   Movement2: {fileID: 0}
   characterController: {fileID: 0}
