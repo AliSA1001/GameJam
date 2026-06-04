@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,9 @@ public class GunsAli : MonoBehaviour
     [Header("hitscan")]
     [SerializeField] LayerMask hitLayers;
 
+    [Header("FeedBack")]
+    [SerializeField] protected MMF_Player shotFeedBack;
+
     // Timer to track when we can shoot again
     protected float nextFireTime;
 
@@ -63,6 +67,7 @@ public class GunsAli : MonoBehaviour
     {
         if (attackTrigger && nextFireTime <= Time.time)
         {
+            shotFeedBack.PlayFeedbacks();
             if (gunAmmo <= 0)
             {
             }
