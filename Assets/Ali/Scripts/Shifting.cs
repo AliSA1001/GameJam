@@ -29,6 +29,7 @@ public class Shifting : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private GunsAli guns;
     [SerializeField] private GameObject powerUp;
+    [SerializeField] private GameObject shiftTrail;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class Shifting : MonoBehaviour
                 Movement2.SwitchMoveState(true);
                 canHit = false;
                 hitTargetsList.Clear();
+                shiftTrail.SetActive(false);
 
             }
         }
@@ -104,6 +106,7 @@ public class Shifting : MonoBehaviour
     {
         currentShiftingTime = shiftingTime;
         isShifting = true;
+        shiftTrail.SetActive(true );
         currentCharge = 0;
         canHit = true;
         canCharge = isPerfectShift;
