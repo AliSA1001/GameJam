@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using MoreMountains.Feedbacks;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +32,11 @@ public class Shifting : MonoBehaviour
     [SerializeField] private GameObject powerUp;
     [SerializeField] private GameObject shiftTrail;
 
+    [Header("FeedBack")]
+    [SerializeField] private MMF_Player PerfectShiftFeedBack;
+    [SerializeField] private MMF_Player ChargeUpFeedBack;
+    private bool FeedbackPlayed = false;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -52,6 +58,7 @@ public class Shifting : MonoBehaviour
                 canHit = false;
                 hitTargetsList.Clear();
                 shiftTrail.SetActive(false);
+                FeedbackPlayed = false ;
 
             }
         }
@@ -63,8 +70,13 @@ public class Shifting : MonoBehaviour
 
         if (isCharging)
         {
-            Movement2.SwitchMoveState(false);
-            currentCharge += Time.deltaTime;
+           Movement2.SwitchMoveState(false);
+           currentCharge += Time.deltaTime;
+            if(currentCharge >= perfectShiftBegin && !FeedbackPlayed )
+            {
+                PerfectShiftFeedBack.PlayFeedbacks();
+                FeedbackPlayed=true;
+            }
           powerUp.SetActive(true);
         }
         else if (!isCharging)
