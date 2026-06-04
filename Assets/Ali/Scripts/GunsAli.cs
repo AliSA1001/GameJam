@@ -72,11 +72,12 @@ public class GunsAli : MonoBehaviour
                 if (isPoint1)
                 {
                     gunAnimator.SetTrigger("Shooting1");
-                   
+                    RaycastStartPoint = trailSpawnPoint1;
                 }
                 else
                 {
                     gunAnimator.SetTrigger("Shooting2");
+                    RaycastStartPoint = trailSpawnPoint2;
 
                 }
                 if (HandleHitScan(out gunRaycastInfo))
