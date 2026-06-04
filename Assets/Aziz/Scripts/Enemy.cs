@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour , IDamgeable
 {
     // hidden systems
     private EnemyHealthSystem EnemyHPValues;
@@ -22,6 +22,9 @@ public class Enemy : MonoBehaviour
     [Header("Health")]
     [SerializeField] private float numEnemyHP;
 
+
+    [Header("player score system")]
+    [SerializeField] private Score playerScore;
 
     void Awake()
     {
@@ -69,6 +72,16 @@ public class Enemy : MonoBehaviour
         if (Application.isPlaying)
         {
             Gizmos.DrawLine(transform.position, debugTarget);
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        numEnemyHP -= amount;
+        if(numEnemyHP <= 0)
+        {
+            playerScore.AddScore(100);
+            Destroy(gameObject);
         }
     }
 }

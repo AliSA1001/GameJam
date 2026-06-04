@@ -999,13 +999,15 @@ GameObject:
   m_Component:
   - component: {fileID: 6627203326298874917}
   - component: {fileID: 3370392631075222808}
+  - component: {fileID: 1196950390344943973}
+  - component: {fileID: 5399682600583907045}
   m_Layer: 0
   m_Name: BasicEnemyDuck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6627203326298874917
 Transform:
   m_ObjectHideFlags: 0
@@ -1047,3 +1049,45 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &1196950390344943973
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717593149139005378}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.88
+  m_Height: 2.07
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5399682600583907045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717593149139005378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b3647f5309976428946cb857279100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  agent: {fileID: 3370392631075222808}
+  target: {fileID: 0}
+  enemyObject: {fileID: 0}
+  debugTarget: {x: 0, y: 0, z: 0}
+  checkRadius: 0.5
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  numEnemyHP: 100

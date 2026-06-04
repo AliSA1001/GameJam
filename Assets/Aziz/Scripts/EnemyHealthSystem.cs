@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHealthSystem : MonoBehaviour
+public class EnemyHealthSystem : MonoBehaviour , IDamgeable
 {
 
 
@@ -20,5 +20,8 @@ public class EnemyHealthSystem : MonoBehaviour
 
     }
 
-
+    public void TakeDamage(float amount)
+    {
+        
+    }
 }
