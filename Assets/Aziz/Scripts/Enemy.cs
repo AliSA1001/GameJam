@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform target;
     [SerializeField] public GameObject enemyObject;
-    [SerializeField] public GameObject enemyItemDrop;
+    // [SerializeField] public GameObject enemyItemDrop;
     [Header("Debug Target")]
     [SerializeField] private Vector3 debugTarget;
 
@@ -39,20 +39,20 @@ public class Enemy : MonoBehaviour
         MoveTo(target.position);
 
 
-        EnemyHPValues.EnemyHealth(numEnemyHP, enemyObject, enemyItemDrop);
+        EnemyHPValues.EnemyHealth(numEnemyHP, enemyObject);
 
-        enemyItemDrop.transform.position = enemyObject.transform.position;
+        // enemyItemDrop.transform.position = enemyObject.transform.position;
     }
 
     public void MoveTo(Vector3 destination)
     {
         debugTarget = destination;
 
-        if (GridManager.Instance.IsBlocked(destination))
+        /*if (GridManager.Instance.IsBlocked(destination))
         {
             return;
         }
-
+        */
         agent.SetDestination(destination);
 
     }
