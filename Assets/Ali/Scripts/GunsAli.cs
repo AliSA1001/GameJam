@@ -6,7 +6,6 @@ public class GunsAli : MonoBehaviour
 {
 
     [Header("Connections")]
-    // 'protected' means the Child (Shotgun) can see this, but other scripts cannot.
     [SerializeField] protected RaycastHit gunRaycastInfo;
     [SerializeField] private Transform RaycastStartPoint;
 
@@ -34,10 +33,6 @@ public class GunsAli : MonoBehaviour
     [Header("hitscan")]
     [SerializeField] LayerMask hitLayers;
 
-
-   
-
-
     // Timer to track when we can shoot again
     protected float nextFireTime;
 
@@ -50,23 +45,18 @@ public class GunsAli : MonoBehaviour
     public void Start()
     {
 
-       
-
-
     }
 
     public void Update()
     {
         HandleShooting();
-
-
-
     }
 
    
-    private void HandleReload()
+   
+    public void AddAmmo(int amount)
     {
-        gunAmmo = maxAmmo;
+        gunAmmo += amount;
     }
 
     protected virtual void HandleShooting()

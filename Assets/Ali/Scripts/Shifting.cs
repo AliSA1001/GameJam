@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,15 +14,20 @@ public class Shifting : MonoBehaviour
     [SerializeField] private bool isShifting;
     [SerializeField] private float currentShiftingTime;
     [SerializeField] private float shiftingTime;
+    [SerializeField] private bool canHit; 
     [SerializeField] private float currentShiftCoolDown = 0;
+    private List<IDamgeable> hitTargetsList = new List<IDamgeable>();
 
     [Header("Shift Numbers")]
     [SerializeField] private float shiftSpeed;
     [SerializeField] private float shiftCoolDown;
+    [SerializeField] private float damageAmount;
+    [SerializeField] private int ammoToAdd;
 
     [Header("Conection")]
     [SerializeField] private Movement2 Movement2; // we can conect it in start but we will do the inspector thing
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private GunsAli guns;
 
     void Start()
     {
@@ -41,7 +47,8 @@ public class Shifting : MonoBehaviour
             {
                 isShifting = false;
                 Movement2.SwitchMoveState(true);
-
+                canHit = false;
+                hitTargetsList.Clear();
 
             }
         }
@@ -70,11 +77,32 @@ public class Shifting : MonoBehaviour
 
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (isShifting && hit.gameObject.TryGetComponent(out IDamgeable damageableTarget))
+        {
+            if (!hitTargetsList.Contains(damageableTarget))
+            {
+                damageableTarget.TakeDamage(damageAmount);
+
+                if (guns != null)
+                {
+                    guns.AddAmmo(ammoToAdd);
+                }
+
+                hitTargetsList.Add(damageableTarget);
+
+                Debug.Log($"Hit a new target! Added ammo. Total distinct targets hit this dash: {hitTargetsList.Count}");
+            }
+        }
+    }
+
     private void ShiftingNow(bool isPerfectShift)
     {
         currentShiftingTime = shiftingTime;
         isShifting = true;
         currentCharge = 0;
+        canHit = true;
         canCharge = isPerfectShift;
     }
 
