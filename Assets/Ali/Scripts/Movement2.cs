@@ -19,15 +19,32 @@ public class Movement2 : MonoBehaviour
     private float horizcalMovement;
     private Vector3 velocity;
 
+    // Animation 
+    private Animator animator;
+    private bool isWalking;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
     }
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
-        
-        if(characterController.isGrounded && velocity.y < 0)
+
+        if(vertcalMovement == 0 && horizcalMovement == 0)
+        {
+            animator.SetBool("Walking", false);
+        }
+        else
+        {
+            animator.SetBool("Walking", true);
+        }
+
+        if (characterController.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }

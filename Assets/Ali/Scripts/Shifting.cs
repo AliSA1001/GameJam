@@ -28,6 +28,7 @@ public class Shifting : MonoBehaviour
     [SerializeField] private Movement2 Movement2; // we can conect it in start but we will do the inspector thing
     [SerializeField] private CharacterController characterController;
     [SerializeField] private GunsAli guns;
+    [SerializeField] private GameObject powerUp;
 
     void Start()
     {
@@ -62,7 +63,11 @@ public class Shifting : MonoBehaviour
         {
             Movement2.SwitchMoveState(false);
             currentCharge += Time.deltaTime;
-          
+          powerUp.SetActive(true);
+        }
+        else if (!isCharging)
+        {
+            powerUp.SetActive(false);
         }
 
         if(!canCharge)
@@ -91,8 +96,6 @@ public class Shifting : MonoBehaviour
                 }
 
                 hitTargetsList.Add(damageableTarget);
-
-                Debug.Log($"Hit a new target! Added ammo. Total distinct targets hit this dash: {hitTargetsList.Count}");
             }
         }
     }
