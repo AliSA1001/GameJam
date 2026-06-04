@@ -20,8 +20,16 @@ public class MenuController : MonoBehaviour
 
     public void PlayGameButton()
     {
-        SceneManager.LoadScene(gameLevelName);
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
+
+    public void PlayButton()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+    }
+
 
     public void ExitButton()
     {

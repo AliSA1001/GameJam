@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ali/AliS.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Ranad/Ranad_Scene.unity
+    guid: 92d19be498a572e4fb43ee1692683968
+  - enabled: 1
+    path: Assets/abdulrhman/abdulrhmanS.unity
+    guid: 3c8b67b1afb789544ab4e49d3a7ecbab
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

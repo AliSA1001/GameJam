@@ -84,4 +84,14 @@ public class Enemy : MonoBehaviour , IDamgeable
             Destroy(gameObject);
         }
     }
+
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // deal damage every frame
+            other.GetComponent<HealthSystems>().TakeDamage(10f * Time.deltaTime);
+        }
+    }
 }
