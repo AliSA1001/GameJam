@@ -10,6 +10,10 @@ public class EnemySpawning : MonoBehaviour
 
     void Start()
     {
+        spawnAgentBasicEnemy.SetActive(false);
+        spawnAgentBigEnemy.SetActive(false);
+        spawnAgentTinyEnemy.SetActive(false);
+
         StartCoroutine(SpawnLoopBasicEnemy());
         StartCoroutine(SpawnLoopBigEnemy());
         StartCoroutine(SpawnLoopTinyEnemy());
@@ -28,7 +32,7 @@ public class EnemySpawning : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(60f, 65f));
+            yield return new WaitForSeconds(Random.Range(10f, 15f));
             EnemySpawn(spawnAgentBigEnemy);
         }
     }
@@ -61,7 +65,8 @@ public class EnemySpawning : MonoBehaviour
 
             if (!isVisible && NavMesh.SamplePosition(randomPos, out NavMeshHit hit, 2f, NavMesh.AllAreas))
             {
-                Instantiate(enemy, hit.position, Quaternion.identity);
+                GameObject spawnedEnemy = Instantiate(enemy, hit.position, Quaternion.identity);
+                spawnedEnemy.SetActive(true);
                 return;
             }
         }

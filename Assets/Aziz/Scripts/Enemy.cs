@@ -3,20 +3,45 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public Transform target;
+    // hidden systems
+    private EnemyHealthSystem EnemyHPValues;
 
+    [Header("Targets")]
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Transform target;
+    [SerializeField] public GameObject enemyObject;
+    [SerializeField] public GameObject enemyItemDrop;
     [Header("Debug Target")]
-    public Vector3 debugTarget;
+    [SerializeField] private Vector3 debugTarget;
+
+    [SerializeField] private float checkRadius = 0.5f;
 
     [Header("Gizmo")]
-    public Color gizmoColor = Color.green;
+    [SerializeField] private Color gizmoColor = Color.green;
 
-    public float checkRadius = 0.5f;
+    [Header("Health")]
+    [SerializeField] private float numEnemyHP;
+
+
+    void Awake()
+    {
+        agent.areaMask = NavMesh.AllAreas;
+    }
+
+    void Start()
+    {
+        EnemyHPValues = gameObject.AddComponent<EnemyHealthSystem>();
+    }
+
 
     void Update()
     {
         MoveTo(target.position);
+
+
+        EnemyHPValues.EnemyHealth(numEnemyHP, enemyObject, enemyItemDrop);
+
+        enemyItemDrop.transform.position = enemyObject.transform.position;
     }
 
     public void MoveTo(Vector3 destination)
@@ -29,9 +54,10 @@ public class Enemy : MonoBehaviour
         }
 
         agent.SetDestination(destination);
+
     }
 
-
+    
 
 
     private void OnDrawGizmos()
