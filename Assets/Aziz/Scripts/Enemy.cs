@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour , IDamgeable
     [Header("player score system")]
     [SerializeField] private Score playerScore;
 
+    [Header("EffectManager")]
+    [SerializeField] private EffectSpawner effectManager;
+
     void Awake()
     {
         agent.areaMask = NavMesh.AllAreas;
@@ -81,6 +84,7 @@ public class Enemy : MonoBehaviour , IDamgeable
         if(numEnemyHP <= 0)
         {
             playerScore.AddScore(100);
+            effectManager.DeathEffect(gameObject.transform);
             Destroy(gameObject);
         }
     }

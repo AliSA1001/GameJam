@@ -122,6 +122,7 @@ public class Shifting : MonoBehaviour
         currentCharge = 0;
         canHit = true;
         canCharge = isPerfectShift;
+
     }
 
     public void OnShift(InputAction.CallbackContext context)
