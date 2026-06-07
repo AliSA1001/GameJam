@@ -11,11 +11,18 @@ public class HealthSystems : MonoBehaviour , IDamgeable
     int heal = 10;
     public TextMeshProUGUI blood;
     public AudioSource audioSource;
+    [SerializeField] private TextMeshProUGUI HpNumber;
 
     void Health()
     {
         blood.text = " " + health;
 
+    }
+
+    private void Update()
+    {
+
+        HpNumber.text = ((int)health).ToString() +"%";
     }
 
     /*void Damage()
@@ -59,4 +66,5 @@ public class HealthSystems : MonoBehaviour , IDamgeable
             Time.timeScale = 0f;
         }
     }
+
 }
