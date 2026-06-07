@@ -4,7 +4,7 @@ public class DestroySelf : MonoBehaviour
 {
     private void Start()
     {
-        Invoke("DestroyNow", 1);
+        Invoke("DestroyNow", 3);
     }
 
     private void DestroyNow()

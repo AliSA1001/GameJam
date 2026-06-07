@@ -10,6 +10,9 @@ public class Shifting : MonoBehaviour
     [SerializeField] private float maxCharge;
     [SerializeField] private float perfectShiftBegin;
     [SerializeField] private float perfectShiftEnd;
+    [SerializeField] private float OriginalPerfectShiftBegin;
+    [SerializeField] private float OriginalPerfectShiftEnd;
+    [SerializeField] private int shiftStack = 0;
     [SerializeField] private bool canCharge;
     [SerializeField] private bool isCharging = false;
     [SerializeField] private bool isShifting;
@@ -122,6 +125,29 @@ public class Shifting : MonoBehaviour
         currentCharge = 0;
         canHit = true;
         canCharge = isPerfectShift;
+        if(isPerfectShift)
+        {
+            shiftStack++;
+            if(shiftStack < 3)
+            {
+                perfectShiftBegin -= 0.5f;
+                perfectShiftEnd -= 0.5f;
+            }
+            else if( shiftStack >= 3)
+            {
+                canCharge = false;
+                perfectShiftBegin  = OriginalPerfectShiftBegin;
+                perfectShiftEnd  = OriginalPerfectShiftEnd;
+                shiftStack = 0;
+            }
+        }
+        else
+        {
+            canCharge = false;
+            perfectShiftBegin = OriginalPerfectShiftBegin;
+            perfectShiftEnd = OriginalPerfectShiftEnd;
+            shiftStack = 0;
+        }
 
     }
 
